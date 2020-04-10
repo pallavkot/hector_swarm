@@ -52,67 +52,12 @@
       name="robot_state_publisher"
       pkg="robot_state_publisher"
       type="robot_state_publisher" />
-    <node
+    <!-- <node
       name="rviz"
       pkg="rviz"
       type="rviz"
-      args="-d $(find aion_r1_gazebo)/rviz/gazebo.rviz" />
+      args="-d $(find aion_r1_gazebo)/rviz/gazebo.rviz" /> -->
 
 </group>
-
-<!-- R2 Rover  -->
-<!-- <group ns="R2">
-  <arg name="name" value="R2" />
-  <arg name="tf_prefix" value="R2" />
-  <param
-    name="robot_description"
-    command="$(find xacro)/xacro '$(find aion_r1_description)/urdf/r1_sim.urdf.xacro' - -inorder" />
-  <node
-    name="spawn_model"
-    pkg="gazebo_ros"
-    type="spawn_model"
-    args="-param robot_description -urdf -model r1_sim -x 1.0 -y 1 -z 0.5"
-    output="screen" />
-  <node
-    name="fake_joint_calibration"
-    pkg="rostopic"
-    type="rostopic"
-    args="pub /calibrated std_msgs/Bool true" />
-  <node
-    name="joint_state_publisher"
-    pkg="joint_state_publisher"
-    type="joint_state_publisher" />
-  <node
-    name="robot_state_publisher"
-    pkg="robot_state_publisher"
-    type="robot_state_publisher" />
-</group>
-
-<group ns="R3">
-  <arg name="name" value="R3" />
-  <arg name="tf_prefix" value="R3" />
-  <param
-    name="robot_description"
-    command="$(find xacro)/xacro '$(find aion_r1_description)/urdf/r1_sim.urdf.xacro' - -inorder" />
-  <node
-    name="spawn_model"
-    pkg="gazebo_ros"
-    type="spawn_model"
-    args="-param robot_description -urdf -model r1_sim -x 1.0 -y -1 -z 0.5"
-    output="screen" />
-  <node
-    name="fake_joint_calibration"
-    pkg="rostopic"
-    type="rostopic"
-    args="pub /calibrated std_msgs/Bool true" />
-  <node
-    name="joint_state_publisher"
-    pkg="joint_state_publisher"
-    type="joint_state_publisher" />
-  <node
-    name="robot_state_publisher"
-    pkg="robot_state_publisher"
-    type="robot_state_publisher" />
-</group> -->
 
 </launch>
