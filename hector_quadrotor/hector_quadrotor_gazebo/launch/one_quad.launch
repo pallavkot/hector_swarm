@@ -4,12 +4,12 @@
 
   <!-- Start Gazebo with wg world running in (max) realtime -->
   <!-- <include file="$(find hector_gazebo_worlds)/launch/rolling_landscape_120m.launch"/> -->
-  <include file="$(find hector_gazebo_worlds)/launch/test_city.launch"/>
-  
-  <!-- Spawn simulated quadrotor uav -->
-  
-  <group ns="quad1">
-    <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch" >
+  <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch" /> -->
+  <include file="$(find hector_gazebo_worlds)/launch/test_city.launch"/>  
+
+  <!-- Spawn quadrotor -->
+  <group ns="quad">
+    <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch">
       <arg name="model" value="$(find hector_quadrotor_description)/urdf/quadrotor_hokuyo_utm30lx.gazebo.xacro"/>
       <arg name="controllers" value="
         controller/attitude
@@ -20,16 +20,15 @@
 
     <!-- Start rviz visualization with preset config -->
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find hector_quadrotor_demo)/rviz_cfg/outdoor_flight.rviz"/>
-
     <include file="$(find hector_quadrotor_teleop)/launch/xbox_controller.launch" >
       <arg name="control_mode" value="position"/>
     </include>
   </group>
 
-<!-- R1 Rover  -->
-  <group ns="R1">
-    <arg name="name" value="R1" />
-    <arg name="tf_prefix" value="R1" />
+  <!-- Spawn R1 Rover  -->
+  <group ns="rover">
+    <arg name="name" value="rover" />
+    <arg name="tf_prefix" value="rover" />
     <param
       name="robot_description"
       command="$(find xacro)/xacro '$(find aion_r1_description)/urdf/r1_sim.urdf.xacro' --inorder" />
@@ -37,7 +36,7 @@
       name="spawn_model"
       pkg="gazebo_ros"
       type="spawn_model"
-      args="-param robot_description -urdf -model r1_sim -x 1.0 -y 0 -z 0.5"
+      args="-param robot_description -urdf -model r1_sim -x 0.0 -y 1.0 -z 0.5"
       output="screen" />
     <node
       name="fake_joint_calibration"
@@ -57,7 +56,12 @@
       pkg="rviz"
       type="rviz"
       args="-d $(find aion_r1_gazebo)/rviz/gazebo.rviz" /> -->
+<<<<<<< HEAD
 
 </group>
 
+=======
+</group>
+
+>>>>>>> firstbranch
 </launch>
